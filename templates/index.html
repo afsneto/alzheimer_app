@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulário de Predição de Alzheimer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .form-container {
+            margin-top: -50px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+
+        .alert {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Formulário de Predição de Alzheimer</h1>
+        <p>Preencha os dados do paciente para prever a propensão à Doença de Alzheimer</p>
+    </div>
+
+    <div class="container">
+        <div class="form-container mx-auto col-lg-8">
+            <form id="predictionForm" action="/predict" method="POST">
+
+                <h4 class="section-title">Informações do Paciente</h4>
+
+<div class="mb-3">
+    <label for="PatientID" class="form-label">ID do Paciente</label>
+    <input type="number" class="form-control" id="PatientID" name="PatientID" min="0" max="9999" placeholder="Digite um número entre 0 e 9999" required>
+</div>
+
+<h4 class="section-title">Detalhes Demográficos</h4>
+
+<div class="mb-3">
+    <label for="Age" class="form-label">Idade</label>
+    <input type="number" class="form-control" id="Age" name="Age" min="60" max="90" placeholder="Digite a idade entre 60 e 90 anos" required>
+</div>
+
+<div class="mb-3">
+    <label for="Gender" class="form-label">Gênero</label>
+    <select class="form-select" id="Gender" name="Gender" required>
+        <option value="" selected disabled>Selecione o Gênero</option>
+        <option value="0">Masculino</option>
+        <option value="1">Feminino</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Ethnicity" class="form-label">Etnia</label>
+    <select class="form-select" id="Ethnicity" name="Ethnicity" required>
+        <option value="" selected disabled>Selecione a Etnia</option>
+        <option value="0">Caucasiano</option>
+        <option value="1">Afro-americano</option>
+        <option value="2">Asiático</option>
+        <option value="3">Outro</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="EducationLevel" class="form-label">Nível Educacional</label>
+    <select class="form-select" id="EducationLevel" name="EducationLevel" required>
+        <option value="" selected disabled>Selecione o Nível Educacional</option>
+        <option value="0">Nenhum</option>
+        <option value="1">Ensino Médio</option>
+        <option value="2">Graduação</option>
+        <option value="3">Pós-Graduação</option>
+    </select>
+</div>
+
+<h4 class="section-title">Fatores de Estilo de Vida</h4>
+
+<div class="mb-3">
+    <label for="BMI" class="form-label">IMC</label>
+    <input type="number" step="0.1" class="form-control" id="BMI" name="BMI" min="15" max="40" placeholder="Digite o IMC entre 15 e 40" required>
+</div>
+
+<div class="mb-3">
+    <label for="Smoking" class="form-label">Fumante</label>
+    <select class="form-select" id="Smoking" name="Smoking" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="AlcoholConsumption" class="form-label">Consumo Semanal de Álcool (unidades)</label>
+    <input type="number" step="0.1" class="form-control" id="AlcoholConsumption" name="AlcoholConsumption" min="0" max="20" placeholder="Digite o consumo semanal entre 0 e 20 unidades" required>
+</div>
+
+<div class="mb-3">
+    <label for="PhysicalActivity" class="form-label">Atividade Física Semanal (horas)</label>
+    <input type="number" step="0.1" class="form-control" id="PhysicalActivity" name="PhysicalActivity" min="0" max="10" required>
+</div>
+
+<div class="mb-3">
+    <label for="DietQuality" class="form-label">Qualidade da Dieta (0-10)</label>
+    <input type="number" step="0.1" class="form-control" id="DietQuality" name="DietQuality" min="0" max="10" required>
+</div>
+
+<div class="mb-3">
+    <label for="SleepQuality" class="form-label">Qualidade do Sono (4-10)</label>
+    <input type="number" step="0.1" class="form-control" id="SleepQuality" name="SleepQuality" min="4" max="10" required>
+</div>
+
+                <h4 class="section-title">Histórico Médico</h4>
+
+<div class="mb-3">
+    <label for="FamilyHistoryAlzheimers" class="form-label">Histórico Familiar de Alzheimer</label>
+    <select class="form-select" id="FamilyHistoryAlzheimers" name="FamilyHistoryAlzheimers" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="CardiovascularDisease" class="form-label">Doença Cardiovascular</label>
+    <select class="form-select" id="CardiovascularDisease" name="CardiovascularDisease" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Diabetes" class="form-label">Diabetes</label>
+    <select class="form-select" id="Diabetes" name="Diabetes" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Depression" class="form-label">Depressão</label>
+    <select class="form-select" id="Depression" name="Depression" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="HeadInjury" class="form-label">Histórico de Traumatismo Craniano</label>
+    <select class="form-select" id="HeadInjury" name="HeadInjury" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Hypertension" class="form-label">Hipertensão</label>
+    <select class="form-select" id="Hypertension" name="Hypertension" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<h4 class="section-title">Medidas Clínicas</h4>
+
+<div class="mb-3">
+    <label for="SystolicBP" class="form-label">Pressão Sistólica (90-180 mmHg)</label>
+    <input type="number" class="form-control" id="SystolicBP" name="SystolicBP" min="90" max="180" placeholder="Digite a pressão sistólica entre 90 e 180 mmHg" required>
+</div>
+
+<div class="mb-3">
+    <label for="DiastolicBP" class="form-label">Pressão Diastólica (60-120 mmHg)</label>
+    <input type="number" class="form-control" id="DiastolicBP" name="DiastolicBP" min="60" max="120" required>
+</div>
+
+<div class="mb-3">
+    <label for="CholesterolTotal" class="form-label">Colesterol Total (150-300 mg/dL)</label>
+    <input type="number" class="form-control" id="CholesterolTotal" name="CholesterolTotal" min="150" max="300" required>
+</div>
+
+<div class="mb-3">
+    <label for="CholesterolLDL" class="form-label">Colesterol LDL (50-200 mg/dL)</label>
+    <input type="number" class="form-control" id="CholesterolLDL" name="CholesterolLDL" min="50" max="200" required>
+</div>
+
+<div class="mb-3">
+    <label for="CholesterolHDL" class="form-label">Colesterol HDL (20-100 mg/dL)</label>
+    <input type="number" class="form-control" id="CholesterolHDL" name="CholesterolHDL" min="20" max="100" required>
+</div>
+
+<div class="mb-3">
+    <label for="CholesterolTriglycerides" class="form-label">Triglicerídeos (50-400 mg/dL)</label>
+    <input type="number" class="form-control" id="CholesterolTriglycerides" name="CholesterolTriglycerides" min="50" max="400" required>
+</div>
+
+<h4 class="section-title">Avaliações Cognitivas e Funcionais</h4>
+
+<div class="mb-3">
+    <label for="MMSE" class="form-label">Pontuação MMSE (0-30)</label>
+    <input type="number" class="form-control" id="MMSE" name="MMSE" min="0" max="30" required>
+</div>
+
+<div class="mb-3">
+    <label for="FunctionalAssessment" class="form-label">Avaliação Funcional (0-10)</label>
+    <input type="number" class="form-control" id="FunctionalAssessment" name="FunctionalAssessment" min="0" max="10" required>
+</div>
+
+<div class="mb-3">
+    <label for="MemoryComplaints" class="form-label">Queixas de Memória</label>
+    <select class="form-select" id="MemoryComplaints" name="MemoryComplaints" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="BehavioralProblems" class="form-label">Problemas Comportamentais</label>
+    <select class="form-select" id="BehavioralProblems" name="BehavioralProblems" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="ADL" class="form-label">Atividades da Vida Diária (0-10)</label>
+    <input type="number" class="form-control" id="ADL" name="ADL" min="0" max="10" required>
+</div>
+
+<h4 class="section-title">Sintomas</h4>
+
+<div class="mb-3">
+    <label for="Confusion" class="form-label">Confusão</label>
+    <select class="form-select" id="Confusion" name="Confusion" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Disorientation" class="form-label">Desorientação</label>
+    <select class="form-select" id="Disorientation" name="Disorientation" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="PersonalityChanges" class="form-label">Mudanças de Personalidade</label>
+    <select class="form-select" id="PersonalityChanges" name="PersonalityChanges" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="DifficultyCompletingTasks" class="form-label">Dificuldade em Completar Tarefas</label>
+    <select class="form-select" id="DifficultyCompletingTasks" name="DifficultyCompletingTasks" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label for="Forgetfulness" class="form-label">Esquecimento</label>
+    <select class="form-select" id="Forgetfulness" name="Forgetfulness" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
+    </select>
+</div>
+
+<div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Prever</button>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <button type="button" class="btn btn-sm btn-outline-primary" id="testAlzheimer">Dados teste para paciente com Alzheimer</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" id="testNoAlzheimer">Dados teste para paciente sem Alzheimer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function (event) {
+            const inputs = document.querySelectorAll('#predictionForm input, #predictionForm select');
+            let valid = true;
+
+            inputs.forEach(input => {
+                if (input.value === '' || input.value === null) {
+                    valid = false;
+                    input.classList.add('is-invalid');
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+
+                if (input.type === 'number') {
+                    const min = parseFloat(input.min);
+                    const max = parseFloat(input.max);
+                    const value = parseFloat(input.value);
+
+                    if (value < min || value > max) {
+                        valid = false;
+                        input.classList.add('is-invalid');
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                }
+            });
+
+            if (!valid) {
+                event.preventDefault();
+                alert('Por favor, corrija os campos destacados antes de enviar.');
+            }
+        });
+
+        document.getElementById('testAlzheimer').addEventListener('click', function () {
+            const testData = { 
+                PatientID: 4872,
+                Age: 84,
+                Gender: 1,
+                Ethnicity: 0,
+                EducationLevel: 1,
+                BMI: 19,
+                Smoking: 1,
+                AlcoholConsumption: 12,
+                PhysicalActivity: 3,
+                DietQuality: 10,
+                SleepQuality: 9,
+                FamilyHistoryAlzheimers: 0,
+                CardiovascularDisease: 0,
+                Diabetes: 0,
+                Depression: 0,
+                HeadInjury: 0,
+                Hypertension: 0,
+                SystolicBP: 96,
+                DiastolicBP: 88,
+                CholesterolTotal: 265,
+                CholesterolLDL: 57,
+                CholesterolHDL: 45,
+                CholesterolTriglycerides: 170,
+                MMSE: 6,
+                FunctionalAssessment: 4,
+                MemoryComplaints: 0,
+                BehavioralProblems: 0,
+                ADL: 4,
+                Confusion: 0,
+                Disorientation: 0,
+                PersonalityChanges: 1,
+                DifficultyCompletingTasks: 1,
+                Forgetfulness: 0,
+
+
+ 
+            };
+            populateForm(testData);
+        });
+
+        document.getElementById('testNoAlzheimer').addEventListener('click', function () {
+            const testData = { 
+                PatientID: 6044,
+                Age: 89,
+                Gender: 1,
+                Ethnicity: 0,
+                EducationLevel: 1,
+                BMI: 19,
+                Smoking: 1,
+                AlcoholConsumption: 16,
+                PhysicalActivity: 8,
+                DietQuality: 3,
+                SleepQuality: 5,
+                FamilyHistoryAlzheimers: 0,
+                CardiovascularDisease: 1,
+                Diabetes: 0,
+                Depression: 0,
+                HeadInjury: 0,
+                Hypertension: 0,
+                SystolicBP: 164,
+                DiastolicBP: 92,
+                CholesterolTotal: 296,
+                CholesterolLDL: 150,
+                CholesterolHDL: 82,
+                CholesterolTriglycerides: 277,
+                MMSE: 30,
+                FunctionalAssessment: 4,
+                MemoryComplaints: 0,
+                BehavioralProblems: 1,
+                ADL: 9,
+                Confusion: 0,
+                Disorientation: 1,
+                PersonalityChanges: 0,
+                DifficultyCompletingTasks: 0,
+                Forgetfulness: 0,
+ 
+            };
+            populateForm(testData);
+        });
+
+        function populateForm(data) {
+            for (const key in data) {
+                const field = document.getElementsByName(key)[0];
+                if (field) {
+                    field.value = data[key];
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
