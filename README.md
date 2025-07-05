@@ -33,6 +33,8 @@ alzheimer-app/
 │   ├── notebook/         # Cadernos Jupyter utilizados para desenvolvimento e testes do modelo
 │
 ├── tests/                # Scripts de testes automatizados para validação de desempenho dos modelos
+├── src/
+│   ├── images/           
 ```
 
 ---
