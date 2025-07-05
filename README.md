@@ -144,6 +144,8 @@ O usuário preenche os dados do paciente por meio de um formulário dividido por
 - Avaliações cognitivas
 - Sintomas
 
+![](/src/images/pagina_index.png)
+
 ### 📊 Tela de Resultado (`result.html`)
 
 Após o envio do formulário, o resultado da predição é exibido com:
@@ -151,5 +153,5 @@ Após o envio do formulário, o resultado da predição é exibido com:
 - Destaque visual (cor e ícone de alerta ou sucesso)
 - Resumo completo dos dados inseridos
 
-Se desejar, é possível incluir imagens de exemplo das telas para complementar o documento.
+![](/src/images/pagina_resultado.png)
 
