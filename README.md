@@ -73,7 +73,7 @@ Para rodar os testes automatizados e visualizar as saídas no terminal:
 pytest -s
 ```
 
-O parâmetro `-s` é utilizado para **exibir as mensagens **`` durante a execução dos testes, pois o `pytest` oculta as saídas padrão por padrão.
+O parâmetro `-s` é utilizado para \*\*exibir as mensagens \*\*\`\` durante a execução dos testes, pois o `pytest` oculta as saídas padrão por padrão.
 
 ---
 
@@ -105,6 +105,21 @@ pytest -s
 
 O parâmetro `-s` permite visualizar no terminal as métricas calculadas durante a execução, como `Accuracy`, `Recall` e `F1-Score`.
 
+### 📈 Resultados do Modelo SVC
+
+Os resultados obtidos para o modelo SVC utilizado no projeto foram:
+
+- **Accuracy:** 0.9372
+- **Recall:** 0.8618
+- **F1-Score:** 0.9066
+
+> A métrica **AUC-ROC não foi utilizada neste projeto** porque o modelo SVC, por padrão, **não possui o método **``** habilitado.** Para utilizar esta métrica, seria necessário treinar o modelo com o parâmetro `probability=True`, o que aumenta significativamente o tempo de processamento. Alternativamente, seria possível utilizar o método `decision_function` para calcular o score de decisão e adaptar a avaliação para AUC.
+
+Outras métricas recomendadas para modelos SVC sem `predict_proba` incluem:
+
+- **Precision:** Para avaliar a proporção de verdadeiros positivos sobre as predições positivas.
+- **Balanced Accuracy:** Para tratar datasets desbalanceados.
+
 ### ✔️ Objetivo do Teste
 
 Esse teste é essencial para:
@@ -135,3 +150,6 @@ Após o envio do formulário, o resultado da predição é exibido com:
 
 - Destaque visual (cor e ícone de alerta ou sucesso)
 - Resumo completo dos dados inseridos
+
+Se desejar, é possível incluir imagens de exemplo das telas para complementar o documento.
+
