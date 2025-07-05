@@ -135,6 +135,3 @@ Após o envio do formulário, o resultado da predição é exibido com:
 
 - Destaque visual (cor e ícone de alerta ou sucesso)
 - Resumo completo dos dados inseridos
-
-Se desejar, é possível incluir imagens de exemplo das telas para complementar o documento.
-
