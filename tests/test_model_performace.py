@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_scor
 import pytest
 
 # Requisitos mínimos de desempenho
-MIN_ACCURACY = 0.64
+MIN_ACCURACY = 0.85
 MIN_RECALL = 0.80
 MIN_F1 = 0.80
 MIN_AUC = 0.85
@@ -34,9 +34,9 @@ def test_model_performance(model, test_data):
     f1 = f1_score(y_test, y_pred)
     # auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
     
-    print(f"Accuracy: {accuracy}")
-    print(f"Recall: {recall}")
-    print(f"F1-Score: {f1}")
+    print(f"\nAccuracy: {accuracy:.2f}")
+    print(f"Recall: {recall:.2f}")
+    print(f"F1-Score: {f1:.2f}")
     # print(f"AUC-ROC: {auc}")
     
     assert accuracy >= MIN_ACCURACY, f"Accuracy below threshold: {accuracy}"
