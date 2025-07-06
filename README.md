@@ -94,7 +94,7 @@ O teste avalia o modelo a partir de:
 
 | Métrica  | Valor Mínimo | Descrição Técnica                                                                                                                                                          |
 | -------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Accuracy | 0.64         | Mede a proporção total de classificações corretas sobre o total de amostras. Indicada para datasets balanceados.                                                           |
+| Accuracy | 0.85         | Mede a proporção total de classificações corretas sobre o total de amostras. Indicada para datasets balanceados.                                                           |
 | Recall   | 0.80         | Mede a capacidade do modelo de encontrar corretamente os pacientes com Alzheimer (sensibilidade). Alta importância para não deixar casos positivos passarem despercebidos. |
 | F1-Score | 0.80         | Média harmônica entre precisão e recall. Equilibra o risco de falsos positivos e falsos negativos.                                                                         |
 | AUC-ROC  | 0.85         | Área sob a curva ROC. Mede a capacidade do modelo de separar corretamente as classes. Quanto mais próximo de 1, melhor a separação.                                        |
